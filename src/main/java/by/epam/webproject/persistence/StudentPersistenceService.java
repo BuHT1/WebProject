@@ -4,7 +4,7 @@ import by.epam.webproject.entities.StudentEntity;
 
 import java.util.List;
 
-public interface StudentPersistenceService extends PersistenceService<Long ,StudentEntity> {
+public interface StudentPersistenceService {
 
-    List<StudentEntity> getStudentsByStudentIds(List<Long> studentIds);
+    List<StudentEntity> getAll(Long univerId, Long facultyId, Long specialityId, Long groupId);
 }

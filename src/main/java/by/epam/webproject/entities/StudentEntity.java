@@ -33,6 +33,9 @@ public class StudentEntity{
 	@Column(name="average_score")
 	private Double score;
 
+	@Column(name="id_group")
+	private Long groupId;
+
 	public Long getId() {
 		return id;
 	}
@@ -65,6 +68,14 @@ public class StudentEntity{
 		this.score = score;
 	}
 
+	public Long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -78,6 +89,7 @@ public class StudentEntity{
 				.append(firstName, that.firstName)
 				.append(lastName, that.lastName)
 				.append(score, that.score)
+				.append(groupId, that.groupId)
 				.isEquals();
 	}
 
@@ -88,6 +100,7 @@ public class StudentEntity{
 				.append(firstName)
 				.append(lastName)
 				.append(score)
+				.append(groupId)
 				.toHashCode();
 	}
 
@@ -98,6 +111,7 @@ public class StudentEntity{
 				.append("firstName", firstName)
 				.append("lastName", lastName)
 				.append("score", score)
+				.append("groupId", groupId)
 				.toString();
 	}
 
@@ -106,9 +120,15 @@ public class StudentEntity{
 		private String firstName;
 		private String lastName;
 		private Double score;
+		private Long groupId;
 
 		public Builder withId(Long id) {
 			this.id = id;
+			return this;
+		}
+
+		public Builder withGroupId(Long groupId) {
+			this.groupId = groupId;
 			return this;
 		}
 
@@ -133,6 +153,7 @@ public class StudentEntity{
 			studentEntity.setFirstName(firstName);
 			studentEntity.setLastName(lastName);
 			studentEntity.setScore(score);
+			studentEntity.setGroupId(groupId);
 			return studentEntity;
 		}
 	}

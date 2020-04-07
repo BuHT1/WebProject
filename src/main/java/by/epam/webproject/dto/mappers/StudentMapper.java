@@ -16,6 +16,7 @@ public class StudentMapper implements EntityDTOMapper<StudentEntity, StudentDTO>
                     .withFirstName(entity.getFirstName())
                     .withLastName(entity.getLastName())
                     .withScore(entity.getScore())
+                    .withGroupId(entity.getGroupId())
                     .build();
         } else {
             return null;
@@ -30,6 +31,7 @@ public class StudentMapper implements EntityDTOMapper<StudentEntity, StudentDTO>
                     .withFirstName(dto.getFirstName())
                     .withLastName(dto.getLastName())
                     .withScore(dto.getScore())
+                    .withGroupId(dto.getGroupId())
                     .build();
         else {
             return null;

@@ -6,15 +6,13 @@ import java.util.List;
 
 public interface StudentService {
 
-    StudentDTO save(StudentDTO studentDTO);
+    StudentDTO save(Long univerId,Long facultyId,Long specialityId, Long groupId, StudentDTO studentDTO);
 
-    StudentDTO get(Long id);
+    StudentDTO get(Long univerId,Long facultyId,Long specialityId, Long groupId, Long studentId);
 
-    List<StudentDTO> getAll();
+    List<StudentDTO> getAll(Long univerId,Long facultyId,Long specialityId, Long groupId);
 
-    void delete(Long id);
+    void delete(Long univerId,Long facultyId,Long specialityId, Long groupId, Long studentId);
 
-    StudentDTO update(Long studentId, StudentDTO studentDTO);
-
-    List<StudentDTO> getStudentsByGroupId(Long groupId);
+    StudentDTO update(Long univerId,Long facultyId,Long specialityId, Long groupId, StudentDTO studentDTO);
 }
