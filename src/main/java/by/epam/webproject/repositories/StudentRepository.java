@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
-    @Query(value = "SELECT * FROM students join groups on students.id_group = groups.id_group " +
+    @Query(value = "SELECT students.* FROM students join groups on students.id_group = groups.id_group " +
             "join speciality on speciality.id_speciality=groups.id_speciality " +
             "join faculty on faculty.id_faculty=speciality.id_faculty " +
             "join university on university.id_university=faculty.id_faculty " +
@@ -20,7 +20,7 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
                                 @Param("specialityId") Long specialityId,
                                 @Param("groupId") Long groupId);
 
-    @Query(value = "SELECT * FROM students join groups on students.id_group = groups.id_group " +
+    @Query(value = "SELECT students.* FROM students join groups on students.id_group = groups.id_group " +
             "join speciality on speciality.id_speciality=groups.id_speciality " +
             "join faculty on faculty.id_faculty=speciality.id_faculty " +
             "join university on university.id_university=faculty.id_faculty " +
@@ -31,7 +31,6 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
                           @Param("specialityId") Long specialityId,
                           @Param("groupId") Long groupId,
                           @Param("studentId") Long studentId);
-
 
     @Query(value = "INSERT INTO students(first_name, last_name, average_score, id_group) VALUES( :firstName, :lastName, :averageScore," +
             "(select id_group from groups join speciality on groups.id_speciality = speciality.id_speciality " +
@@ -47,7 +46,6 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
                        @Param("lastName") String lastName,
                        @Param("averageScore") Double averageScore);
 
-
     @Query(value = "delete from students where id_students=(select id_students from students " +
             "join groups on groups.id_group=students.id_group " +
             "join speciality on groups.id_speciality = speciality.id_speciality " +
@@ -58,8 +56,8 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
             " and groups.id_group=:groupId and students.id_students=:studentId)", nativeQuery = true)
     @Modifying
     void delete(@Param("univerId") Long univerId,
-                       @Param("facultyId") Long facultyId,
-                       @Param("specialityId") Long specialityId,
-                       @Param("groupId") Long groupId,
-                       @Param("studentId") Long studentId);
+                @Param("facultyId") Long facultyId,
+                @Param("specialityId") Long specialityId,
+                @Param("groupId") Long groupId,
+                @Param("studentId") Long studentId);
 }
