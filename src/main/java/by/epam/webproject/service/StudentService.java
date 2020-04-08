@@ -14,5 +14,5 @@ public interface StudentService {
 
     void delete(Long univerId,Long facultyId,Long specialityId, Long groupId, Long studentId);
 
-    StudentDTO update(Long univerId,Long facultyId,Long specialityId, Long groupId, StudentDTO studentDTO);
+    StudentDTO update(Long univerId,Long facultyId,Long specialityId, Long groupId, Long studentId, StudentDTO studentDTO);
 }

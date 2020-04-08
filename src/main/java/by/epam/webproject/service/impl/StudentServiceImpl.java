@@ -22,12 +22,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDTO save(Long univerId, Long facultyId, Long specialityId, Long groupId, StudentDTO studentDTO) {
-        return null;
+        StudentEntity studentEntity = studentMapper.mapToEntity(studentDTO);
+        return studentMapper.mapToModel(studentPersistenceService.save(univerId, facultyId, specialityId, groupId, studentEntity));
     }
 
     @Override
     public StudentDTO get(Long univerId, Long facultyId, Long specialityId, Long groupId, Long studentId) {
-        return null;
+        return studentMapper.mapToModel(studentPersistenceService.get(univerId, facultyId, specialityId, groupId, studentId));
     }
 
     @Override
@@ -39,11 +40,20 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void delete(Long univerId, Long facultyId, Long specialityId, Long groupId, Long studentId) {
-
+        studentPersistenceService.delete(univerId, facultyId, specialityId, groupId, studentId);
     }
 
     @Override
-    public StudentDTO update(Long univerId, Long facultyId, Long specialityId, Long groupId, StudentDTO studentDTO) {
-        return null;
+    public StudentDTO update(Long univerId, Long facultyId, Long specialityId, Long groupId, Long studentId, StudentDTO studentDTO) {
+        StudentEntity savedEntity = studentPersistenceService.get(univerId, facultyId, specialityId, groupId, studentId);
+
+        if (savedEntity == null) {
+            return null;
+        }
+
+        StudentEntity entityToUpdate = studentMapper.mapToEntity(studentDTO);
+        entityToUpdate.setId(savedEntity.getId());
+
+        return studentMapper.mapToModel(studentPersistenceService.update(entityToUpdate));
     }
 }
