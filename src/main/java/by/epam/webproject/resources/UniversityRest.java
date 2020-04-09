@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/rest/universities", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/universities", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UniversityRest {
 
     @Autowired

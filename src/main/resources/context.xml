@@ -1,31 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-        http://www.springframework.org/schema/mvc
-	   http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/data/jpa
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean id="jacksonHttpMessageConverter"
-                  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="prettyPrint" value="true"/>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-    <context:component-scan base-package="by.epam.webproject"/>
-    <jpa:repositories base-package="by.epam.webproject.repositories"/>
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -45,9 +32,6 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-
-                <prop key="format_sql">true</prop>
-                <prop key="use_sql_comments">true</prop>
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
         </property>
@@ -57,5 +41,8 @@
         <property name="sessionFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <tx:annotation-driven />
+    <context:component-scan base-package="by.epam.webproject"/>
+    <tx:annotation-driven/>
+    <jpa:repositories base-package="by.epam.webproject.repositories"/>
+
 </beans>
