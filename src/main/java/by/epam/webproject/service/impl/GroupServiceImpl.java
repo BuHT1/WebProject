@@ -7,8 +7,10 @@ import by.epam.webproject.persistence.GroupPersistenceService;
 import by.epam.webproject.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,11 +42,17 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    @Transactional
     public void delete(Long univerId, Long facultyId, Long specialityId, Long groupId) {
+        if (Objects.isNull(groupPersistenceService.get(univerId, facultyId, specialityId, groupId))) {
+            throw new RuntimeException("Student not found");
+        }
+
         groupPersistenceService.delete(univerId, facultyId, specialityId, groupId);
     }
 
     @Override
+    @Transactional
     public GroupDTO update(Long univerId, Long facultyId, Long specialityId, Long groupId, GroupDTO groupDTO) {
         GroupEntity groupEntity = groupPersistenceService.get(univerId, facultyId, specialityId, groupId);
         if (groupEntity == null) {

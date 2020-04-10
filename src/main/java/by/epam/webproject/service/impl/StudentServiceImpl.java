@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +41,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void delete(Long univerId, Long facultyId, Long specialityId, Long groupId, Long studentId) {
+        StudentEntity studentEntity = studentPersistenceService.get(univerId, facultyId, specialityId, groupId, studentId);
+        if (Objects.isNull(studentEntity)) {
+            throw new RuntimeException("Student not found!");
+        }
+
         studentPersistenceService.delete(univerId, facultyId, specialityId, groupId, studentId);
     }
 

@@ -41,7 +41,7 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
                      @Param("specialityId") Long specialityId,
                      @Param("name") String name);
 
-    @Query(value = "delete from groups where id_groups=(select id_groups from groups " +
+    @Query(value = "delete from groups where id_group=(select id_group from groups " +
             "join speciality on groups.id_speciality = speciality.id_speciality " +
             "join faculty on faculty.id_faculty=speciality.id_faculty " +
             "join university on university.id_university=faculty.id_university " +

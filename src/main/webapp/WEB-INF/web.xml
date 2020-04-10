@@ -22,7 +22,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>by.epam.webproject.resourcesjersey.application.RestApplication</param-value>
+            <param-value>by.epam.webproject.application.RestApplication</param-value>
         </init-param>
         <init-param>
             <param-name>jersey.config.beanValidation.enableOutputValidationErrorEntity.server</param-name>
